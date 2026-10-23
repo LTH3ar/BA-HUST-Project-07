@@ -1,0 +1,19 @@
+# Cấu hình chung của dự án. Mọi notebook / script đọc tham số từ file này.
+
+random_state: 42
+
+paths:
+  raw_data: data/WA_Fn-UseC_-Telco-Customer-Churn.csv
+  clean_data: data/processed/telco_clean.csv
+  splits: data/processed/splits.csv
+
+split:
+  test_size: 0.20   # tỉ lệ trên toàn bộ dữ liệu
+  val_size: 0.20    # tỉ lệ trên toàn bộ dữ liệu → train = 1 - test - val
+  stratify: true    # giữ tỉ lệ churn như nhau giữa các tập (không phải xử lý imbalance)
+
+features:
+  new_customer_max_tenure: 12
+  # Ngưỡng theo decile MonthlyCharges ở EDA mục 7.1 (f16): churn tăng đến ~$100 rồi giảm lại
+  monthly_charge_bins: [0, 25, 70, 100, .inf]
+  monthly_charge_labels: ["<=25", "25-70", "70-100", ">100"]

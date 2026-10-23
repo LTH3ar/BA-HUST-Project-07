@@ -1,0 +1,36 @@
+# Profit-Aware Telecom Churn & Retention Targeting
+# Python >= 3.12
+# Install: uv pip install -r requirements.txt   (or: pip install -r requirements.txt)
+
+# --- Core data ---
+numpy>=2.0,<3
+pandas>=2.2,<3
+pyyaml>=6.0            # đọc config.yaml (save_rate, offer_cost, budget, margin, horizon)
+
+# --- EDA & statistics ---
+scipy>=1.13            # chi-square, Mann-Whitney
+statsmodels>=0.14      # VIF / đa cộng tuyến, odds ratio cho logistic regression
+
+# --- Visualization ---
+matplotlib>=3.9
+seaborn>=0.13
+plotly>=5.22
+
+# --- Modeling & calibration ---
+scikit-learn>=1.5      # LogisticRegression, RandomForest, CalibratedClassifierCV, metrics
+xgboost>=2.1           # gradient boosting (stretch)
+lightgbm>=4.5          # gradient boosting (stretch)
+shap>=0.46             # feature attribution (stretch)
+
+# --- Segmentation (clustering cho dữ liệu hỗn hợp, tùy chọn) ---
+kmodes>=0.12           # K-Prototypes
+
+# --- Dashboard ---
+streamlit>=1.38
+
+# --- Notebook ---
+jupyter>=1.0
+ipykernel>=6.29
+
+# --- Export ---
+openpyxl>=3.1          # xuất targeting table / scorecard ra Excel

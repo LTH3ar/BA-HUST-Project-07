@@ -17,3 +17,36 @@ features:
   # Ngưỡng theo decile MonthlyCharges ở EDA mục 7.1 (f16): churn tăng đến ~$100 rồi giảm lại
   monthly_charge_bins: [0, 25, 70, 100, .inf]
   monthly_charge_labels: ["<=25", "25-70", "70-100", ">100"]
+
+# Modelling step (notebook 03). Tuning by CV on train; val is used for calibration and threshold analysis.
+models:
+  cv_folds: 5
+  # Select parameters by log loss (a proper scoring rule): it rewards correct probabilities, not only ranking,
+  # because the EV formula uses p_churn directly
+  refit_metric: neg_log_loss
+  lr:
+    grid:
+      C: [0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1, 3, 10, 100]
+  rf:
+    params: {n_estimators: 500}
+    grid:
+      max_features: [0.1, "sqrt", 0.3, 0.5]
+      min_samples_leaf: [5, 10, 20, 40]
+      max_depth: [null, 10]
+  lgbm:
+    params: {learning_rate: 0.03, subsample: 0.8, subsample_freq: 1, colsample_bytree: 0.8}
+    grid:
+      n_estimators: [200, 400, 800, 1600]
+      num_leaves: [2, 3, 4, 8]          # 2 = stump, the smallest possible value
+      min_child_samples: [50, 100, 200, 400]
+      reg_lambda: [0, 5]
+
+calibration:
+  methods: [none, sigmoid, isotonic]   # compared by cross-fitting on val, selected by log loss
+  cv_folds: 5
+  n_bins: 10                           # number of (equal-frequency) bins for ECE and the reliability diagram
+
+threshold_analysis:
+  thresholds: [0.2, 0.3, 0.4, 0.5, 0.6]
+  top_k_shares: [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.40, 0.50]   # share of customers contacted
+  n_bootstrap: 1000

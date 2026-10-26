@@ -26,11 +26,13 @@ shap>=0.46             # feature attribution (stretch)
 kmodes>=0.12           # K-Prototypes
 
 # --- Dashboard ---
-streamlit>=1.38
+streamlit>=1.66        # dashboard/app.py (uses st.metric delta_arrow)
 
 # --- Notebook ---
 jupyter>=1.0
 ipykernel>=6.29
+nbclient>=0.10         # main.py executes the notebooks
+nbformat>=5.10
 
 # --- Export ---
 openpyxl>=3.1          # xuất targeting table / scorecard ra Excel

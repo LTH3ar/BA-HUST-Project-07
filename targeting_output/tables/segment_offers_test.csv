@@ -1,0 +1,5 @@
+,contacted,spend,net_value,precision
+"One offer, reference budget",200.0,8000.0,8869.088081913818,0.685
+"Segment offers, reference budget",146.0,7985.0,6283.579805604342,0.6712328767123288
+"One offer, no budget cap",423.0,16920.0,10818.598190593428,0.5437352245862884
+"Segment offers, no budget cap",429.0,21910.0,9964.524167757161,0.5641025641025641

@@ -1,0 +1,34 @@
+,mean |SHAP| (log-odds)
+tenure,0.5175169568782448
+Contract_Month-to-month,0.4239418675593057
+m2m_fiber,0.2678210382253431
+InternetService_No,0.2511673433520502
+Contract_Two year,0.2506283221267939
+MonthlyCharges,0.18965798565154438
+has_protection,0.1697390092675483
+PaperlessBilling,0.13636689398768229
+InternetService_Fiber optic,0.11093522117527319
+TotalCharges,0.10261286244751136
+MultipleLines,0.09903376983417893
+avg_past_charge,0.08911316499763565
+Contract_One year,0.08444685801483011
+PhoneService,0.07928432287007728
+StreamingTV,0.07690000791253306
+PaymentMethod_Electronic check,0.07434860684727036
+m2m_echeck,0.06594168409360932
+Dependents,0.06017383180211444
+charge_change,0.05205289890932245
+OnlineBackup,0.04831485340746947
+StreamingMovies,0.04341061997135594
+OnlineSecurity,0.0393464600083759
+has_streaming,0.03778000744931312
+SeniorCitizen,0.030187236808238746
+TechSupport,0.005513819679582915
+num_addons,0.003937627513228255
+PaymentMethod_Credit card (automatic),0.0
+InternetService_DSL,0.0
+PaymentMethod_Bank transfer (automatic),0.0
+PaymentMethod_Mailed check,0.0
+Partner,0.0
+DeviceProtection,0.0
+auto_payment,0.0

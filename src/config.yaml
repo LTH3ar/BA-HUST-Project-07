@@ -50,3 +50,63 @@ threshold_analysis:
   thresholds: [0.2, 0.3, 0.4, 0.5, 0.6]
   top_k_shares: [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.40, 0.50]   # share of customers contacted
   n_bootstrap: 1000
+
+# ---------------------------------------------------------------------------
+# Retention targeting (notebook 04, src/value.py, src/targeting.py, dashboard)
+# Every number below is an ASSUMPTION for business simulation, not an estimate from the data:
+# the dataset contains no retention campaign, so offer cost and save rate cannot be measured.
+# Change them here (or with the dashboard sliders); nothing downstream hard-codes them.
+# ---------------------------------------------------------------------------
+business:
+  currency: USD
+  # Value proxy V = MonthlyCharges × gross_margin × annuity(retention_horizon_months, annual_discount_rate)
+  gross_margin: 0.50              # share of the monthly bill left after direct service costs (contribution margin)
+  retention_horizon_months: 12    # months a saved customer is assumed to stay after the offer
+  annual_discount_rate: 0.10      # time value of money for the horizon
+  # Offer economics
+  offer_cost: 40                  # cost per contacted customer (offer + contact), paid whether or not they would churn
+  save_rate: 0.25                 # P(offer keeps a would-be churner); assumed 0 for customers who would stay anyway
+  # Campaign budget for the whole customer base; scaled by n / base_size when a split (val, test) is simulated
+  campaign_budget: 40000          # → 1,000 offers at offer_cost = 40, about 14% of the base
+  base_size: 7043
+  # Tiers used for segments in the targeting table and dashboard
+  risk_tiers: {bins: [0, 0.2, 0.5, 1.0001], labels: ["Low", "Medium", "High"]}
+  value_tiers: {quantiles: [0, 0.3333, 0.6667, 1], labels: ["Low", "Medium", "High"]}
+  high_value_quantile: 0.75       # "high-value" customer = V in the top 25% of the base (coverage metric)
+
+# Ranges for sensitivity analysis (notebook 04 section 6, dashboard)
+sensitivity:
+  save_rate: [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.40, 0.50]
+  offer_cost: [10, 20, 30, 40, 60, 80, 100, 150]
+  campaign_budget: [10000, 20000, 40000, 60000, 80000, 120000]
+  one_way:                         # low / high values around the base case, for the tornado chart
+    save_rate: [0.10, 0.40]
+    offer_cost: [20, 80]
+    gross_margin: [0.30, 0.70]
+    retention_horizon_months: [6, 24]
+    annual_discount_rate: [0.0, 0.20]
+    campaign_budget: [20000, 80000]
+
+# Segment-specific offers (stretch, illustrative). Rules are applied in order; a customer gets the first offer whose rule matches.
+# Costs and save rates are assumptions chosen to illustrate the trade-off, not measured effects.
+segment_offers:
+  - name: "Contract upgrade discount"
+    rule: "Contract == 'Month-to-month' and InternetService == 'Fiber optic'"
+    offer_cost: 60
+    save_rate: 0.30
+  - name: "Autopay credit"
+    rule: "Contract == 'Month-to-month' and PaymentMethod == 'Electronic check'"
+    offer_cost: 20
+    save_rate: 0.15
+  - name: "Free security / tech-support trial"
+    rule: "InternetService != 'No' and OnlineSecurity == 0 and TechSupport == 0"
+    offer_cost: 15
+    save_rate: 0.15
+  - name: "Generic loyalty discount"
+    rule: "all"                      # everyone else
+    offer_cost: 40
+    save_rate: 0.25
+
+targeting:
+  main_model: lr                   # chosen in notebook 04 section 3 (EV on val; LR unless another model is clearly better)
+  n_bootstrap: 1000

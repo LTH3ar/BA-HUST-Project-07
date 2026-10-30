@@ -207,7 +207,7 @@ Logistic regression giả định mỗi biến số **tuyến tính với log-od
 - `log_TotalCharges = log(1 + TotalCharges)`. Khách `tenure = 0` (`TotalCharges = 0`) cho giá trị 0.
 
 **Kiểm tra tuyến tính** (notebook 02 mục 4, **chỉ trên tập train**). Mỗi biến được kiểm tra bằng:
-- **Empirical logit:** log-odds thực tế theo decile, so với đường thẳng của LR một biến. Xem biểu đồ [`p02_linearity_logit.png`](../outputs/figures/p02_linearity_logit.png).
+- **Empirical logit:** log-odds thực tế theo decile, so với đường thẳng của LR một biến. Xem biểu đồ [`p02_linearity_logit.png`](../eda_output/figures/p02_linearity_logit.png).
 - **So sánh AIC:** dạng tuyến tính so với dạng 10 decile (đường cong tự do).
 - **Kiểm định Box-Tidwell:** thành phần `x·ln(x)`.
 
@@ -325,7 +325,7 @@ Kết luận: **cả 6 biến số đều không tuyến tính với log-odds.**
 | `data/processed/splits.csv` | `customerID → train / val / test` |
 | `src/preprocessing.py` | `clean_data()`, `add_features()`, `assign_splits()`, `build_preprocessor()`, các danh sách `NUM_COLS` / `CAT_COLS` / `BIN_COLS`, và `BUSINESS_FLAG_COLS` |
 | `src/config.yaml` | `random_state`, tỉ lệ chia, ngưỡng `is_new_customer`, ngưỡng chia `MonthlyCharges` |
-| `outputs/figures/p01_engineered_flags.png`, `p02_linearity_logit.png` | Churn theo các cờ mới; empirical logit của các biến số |
+| `eda_output/figures/p01_engineered_flags.png`, `p02_linearity_logit.png` | Churn theo các cờ mới; empirical logit của các biến số |
 
 **Cách dùng ở bước mô hình**
 

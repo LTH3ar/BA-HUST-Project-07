@@ -1,0 +1,104 @@
+{
+  "assumptions": {
+    "gross_margin": 0.5,
+    "retention_horizon_months": 12,
+    "annual_discount_rate": 0.1,
+    "offer_cost": 40,
+    "save_rate": 0.25,
+    "campaign_budget": 40000
+  },
+  "main_model": "lr",
+  "test": {
+    "n": 1409,
+    "offers": 200,
+    "roc_auc": 0.8479397556123899,
+    "pr_auc": 0.6663781101168005,
+    "ece": 0.022420019520991052,
+    "brier": 0.13464288995594492,
+    "ev_net_value": 8869.088081913818,
+    "ev_precision": 0.685,
+    "ev_recall": 0.3663101604278075,
+    "ev_hv_churner_coverage": 0.5339805825242718,
+    "ev_roi": 1.1086360102392272,
+    "risk_net_value": 8183.491245077446,
+    "risk_precision": 0.725,
+    "risk_recall": 0.3877005347593583,
+    "risk_hv_churner_coverage": 0.34951456310679613,
+    "risk_roi": 1.0229364056346808,
+    "value_net_value": 604.9457074809379,
+    "value_precision": 0.29,
+    "value_recall": 0.15508021390374332,
+    "value_hv_churner_coverage": 0.5631067961165048,
+    "value_roi": 0.07561821343511724,
+    "eda_rule_net_value": 7706.737094664621,
+    "eda_rule_precision": 0.67,
+    "eda_rule_recall": 0.3582887700534759,
+    "eda_rule_hv_churner_coverage": 0.30097087378640774,
+    "eda_rule_roi": 0.9633421368330776,
+    "random_net_value": -2494.9762912269034,
+    "random_precision": 0.2654364797728886,
+    "random_recall": 0.14194464158977999,
+    "random_hv_churner_coverage": 0.14194464158977999,
+    "random_roi": -0.3118720364033629,
+    "oracle_net_value": 17969.598744725976,
+    "oracle_precision": 1.0,
+    "oracle_recall": 0.5347593582887701,
+    "oracle_hv_churner_coverage": 1.0,
+    "oracle_roi": 2.246199843090747,
+    "ev_net_lo": 7048.570900341351,
+    "ev_net_hi": 10491.710608031339,
+    "ev_minus_risk": 783.8114694616667,
+    "ev_minus_risk_lo": -261.7017607747355,
+    "ev_minus_risk_hi": 1942.317143419078,
+    "p_ev_better_than_risk": 0.923
+  },
+  "scaled_to_base": {
+    "factor": 4.998580553584103,
+    "offers": 1000,
+    "ev_net": 44332.85121427894,
+    "ev_net_lo": 35232.84943300507,
+    "ev_net_hi": 52443.66061913749,
+    "risk_net": 40905.840198069876,
+    "spend": 40000,
+    "tornado": {
+      "retention_horizon_months": [
+        4054.344419029213,
+        120988.75634423508
+      ],
+      "save_rate": [
+        1174.1945280404746,
+        94925.74860005
+      ],
+      "offer_cost": [
+        96468.50903632221,
+        4792.2246296293
+      ],
+      "gross_margin": [
+        10604.252957098233,
+        78061.44947145964
+      ],
+      "campaign_budget": [
+        24786.54684396571,
+        56479.86460764939
+      ],
+      "annual_discount_rate": [
+        48767.02663236338,
+        40531.296064837086
+      ]
+    },
+    "grid_min": 0.0,
+    "grid_max": 327212.98596016446
+  },
+  "campaign_size": {
+    "ev_positive_share_val": 0.2931156848828957,
+    "recommended_offers_base": 2064,
+    "recommended_budget_base": 82560,
+    "net_test_at_recommended": 55211.58797935468,
+    "ev_positive_base": 2055
+  },
+  "grid": {
+    "cells_not_paying": 15,
+    "cells": 64,
+    "ev_beats_risk_share": 0.8125
+  }
+}
